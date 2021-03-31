@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.CaNhanFragment"
+    android:background="@color/white">
+    <RelativeLayout
+        android:orientation="vertical"
+        android:id="@+id/activity_main"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/black">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="100dp"
+                android:id="@+id/imgAvatar"
+                android:layout_gravity="center"
+                android:src="@drawable/anhdemo1" />
+
+            <TextView
+                android:id="@+id/tvTenNguoiDung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="Họ và tên"
+                android:textSize="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:id="@+id/tvMota"
+                android:textColor="@color/white"
+                android:maxLines="3"
+                android:text="abc"
+                android:textSize="13dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Theo dõi"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:text="Đang theo dõi"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1.025"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="240"
+                android:textSize="14dp"
+                android:gravity="center"
+                android:id="@+id/tvTheoGioi"
+                android:textColor="#000000" />
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1.25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:text="300"
+                android:id="@+id/tvDangTheoGioi"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imQR"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/background1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:elevation="5dp"
+            android:padding="10dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/imageView"
+                android:layout_gravity="center"
+                android:src="@drawable/anhdemo1" />
+            <TextView
+                android:id="@+id/btnDangBai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:gravity="top"
+                android:hint="Bạn đang nghĩ gì?"
+                android:padding="10dp"
+                android:paddingTop="10dp" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BÀI VIẾT"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:textColor="#000000"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/header"
+            android:id="@+id/rcvBaiViet">
+        </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
+</ScrollView>

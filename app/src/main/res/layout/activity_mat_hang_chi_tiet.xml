@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.MatHangChiTietActivity">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#93DAF3"
+        android:orientation="horizontal"
+        android:paddingTop="15dp">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/anhdemo1" />
+
+    </LinearLayout>
+
+
+    -
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgHinhAnh"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTieuDeChiTiet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="iphonx"
+                    android:textColor="@color/black"
+                    android:textSize="21dp" />
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="5"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvGiaChiTiet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:layout_weight="3"
+                        android:text="giá"
+                        android:textColor="@color/red"
+                        android:textSize="21dp" />
+
+                    <TextView
+                        android:id="@+id/tvSuaTin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/with_shadow"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:text="Sửa tin"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvXoaTin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/with_shadow"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:text="Xóa tin"
+                        android:textColor="@color/black" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDiaChiChiTiet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="thời gian"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#968D8D" />
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/imageView"
+                    android:layout_gravity="center"
+                    android:src="@drawable/anhdemo1" />
+
+
+                -
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:id="@+id/tvDangsanpham"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:elevation="100dp"
+                        android:gravity="top"
+                        android:padding="10dp"
+                        android:text="Nguyễn Huy"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvXemTrang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/with_shadow"
+                        android:padding="10dp"
+                        android:text="Xem trang"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#968D8D" />
+
+            <TextView
+                android:id="@+id/tvNoiDungChiTiet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:paddingTop="10dp"
+                android:text="nội dung" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:padding="10dp"
+                android:text="Hỏi người bán qua chat"
+                android:textColor="#9C9A9A" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#968D8D" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

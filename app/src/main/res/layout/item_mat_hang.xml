@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    android:id="@+id/lnChiTiet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/bo_tron"
+    android:orientation="vertical"
+    android:weightSum="6">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4">
+
+
+        <ImageView
+            android:id="@+id/imgHinhAnh"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="24dp" />
+
+        <TextView
+            android:id="@+id/tvSoAnh"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="top"
+            android:text="9"
+            android:textColor="@color/white"
+            android:textSize="9sp" />
+
+        <ImageView
+            android:id="@+id/imgTuyChinh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_option" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <TextView
+            android:id="@+id/tvTieuDe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:fontFamily="@font/font"
+            android:maxLines="2"
+            android:text="aaaaaaaaaaaaaaaaaaaaâ"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvGiaBan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTieuDe"
+            android:layout_alignParentStart="true"
+            android:text="0111111"
+            android:textColor="@color/red"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvThoiGian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvGiaBan"
+            android:layout_alignParentStart="true"
+            android:fontFamily="@font/font"
+            android:text="aaaaaaaaaaaaaa"
+            android:textSize="8sp" />
+
+        <TextView
+            android:id="@+id/tvDiaChi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvGiaBan"
+            android:layout_marginStart="3dp"
+            android:layout_toRightOf="@id/tvThoiGian"
+            android:fontFamily="@font/font"
+            android:text="aaaaaaaaaaaaa"
+            android:textSize="8sp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

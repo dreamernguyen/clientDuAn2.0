@@ -1,0 +1,206 @@
+package com.dreamernguyen.ClientDuAn.Models;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+public class NguoiDung {
+    public NguoiDung() {
+    }
+
+
+
+    @SerializedName("avatar")
+    @Expose
+    private String avatar;
+    @SerializedName("dangTheoDoi")
+    @Expose
+    private List<Object> dangTheoDoi = null;
+    @SerializedName("duocTheoDoi")
+    @Expose
+    private List<Object> duocTheoDoi = null;
+    @SerializedName("_id")
+    @Expose
+    private String id;
+    @SerializedName("email")
+    @Expose
+    private String email;
+    @SerializedName("matKhau")
+    @Expose
+    private String matKhau;
+    @SerializedName("hoTen")
+    @Expose
+    private String hoTen;
+    @SerializedName("thoiGianTao")
+    @Expose
+    private String thoiGianTao;
+    @SerializedName("thoiGianCapNhat")
+    @Expose
+    private String thoiGianCapNhat;
+    @SerializedName("soDienThoai")
+    @Expose
+    private Integer soDienThoai;
+    @SerializedName("ngaySinh")
+    @Expose
+    private String ngaySinh;
+    @SerializedName("diaChi")
+    @Expose
+    private String diaChi;
+    @SerializedName("tieuSu")
+    @Expose
+    private String tieuSu;
+    @SerializedName("gioiTinh")
+    @Expose
+    private Boolean gioiTinh;
+    @SerializedName("baoCao")
+    @Expose
+    private int baoCao;
+
+    //Đăng nhập
+    public NguoiDung(int soDienThoai, String matKhau) {
+        this.soDienThoai = soDienThoai;
+        this.matKhau = matKhau;
+    }
+
+    //Đăng ký
+    public NguoiDung(String email, String matKhau, String hoTen, Integer soDienThoai) {
+        this.email = email;
+        this.matKhau = matKhau;
+        this.hoTen = hoTen;
+        this.soDienThoai = soDienThoai;
+    }
+    //Cập nhật thông tin
+    public NguoiDung(String id, String matKhau, String hoTen, String ngaySinh, String diaChi, String tieuSu, Boolean gioiTinh) {
+        this.id = id;
+        this.matKhau = matKhau;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.tieuSu = tieuSu;
+        this.gioiTinh = gioiTinh;
+    }
+
+
+
+
+
+    public List<Object> getDangTheoDoi() {
+        return dangTheoDoi;
+    }
+
+    public void setDangTheoDoi(List<Object> dangTheoDoi) {
+        this.dangTheoDoi = dangTheoDoi;
+    }
+
+    public List<Object> getDuocTheoDoi() {
+        return duocTheoDoi;
+    }
+
+    public void setDuocTheoDoi(List<Object> duocTheoDoi) {
+        this.duocTheoDoi = duocTheoDoi;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public String getThoiGianTao() {
+        return thoiGianTao;
+    }
+
+    public void setThoiGianTao(String thoiGianTao) {
+        this.thoiGianTao = thoiGianTao;
+    }
+
+    public String getThoiGianCapNhat() {
+        return thoiGianCapNhat;
+    }
+
+    public void setThoiGianCapNhat(String thoiGianCapNhat) {
+        this.thoiGianCapNhat = thoiGianCapNhat;
+    }
+
+    public Integer getSoDienThoai() {
+        return soDienThoai;
+    }
+
+    public void setSoDienThoai(Integer soDienThoai) {
+        this.soDienThoai = soDienThoai;
+    }
+
+    public String getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(String ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    public String getTieuSu() {
+        return tieuSu;
+    }
+
+    public void setTieuSu(String tieuSu) {
+        this.tieuSu = tieuSu;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public Boolean getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(Boolean gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+    public int getBaoCao() {
+        return baoCao;
+    }
+
+    public void setBaoCao(int baoCao) {
+        this.baoCao = baoCao;
+    }
+}

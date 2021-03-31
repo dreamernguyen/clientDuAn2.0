@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "555802560190",
+    "project_id": "mang-xa-hoi-safaco",
+    "storage_bucket": "mang-xa-hoi-safaco.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555802560190:android:2145729eb5f9891e8000ef",
+        "android_client_info": {
+          "package_name": "com.dreamernguyen.clientduan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "555802560190-7ab3tubdpjpfi4nsuc6lh48rt6qfflv3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dreamernguyen.clientduan",
+            "certificate_hash": "a4bef1674d167a66caeaa0cba9a3d95caa9f9d40"
+          }
+        },
+        {
+          "client_id": "555802560190-l2erd887btjlqne3h9rf7vh1c331io9f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkOX3KsfsmZUPINziIiutbN0nMJQl6I3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "555802560190-l2erd887btjlqne3h9rf7vh1c331io9f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
