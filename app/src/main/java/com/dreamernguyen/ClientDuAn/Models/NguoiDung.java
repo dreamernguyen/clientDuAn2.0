@@ -6,10 +6,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class NguoiDung {
-    public NguoiDung() {
-    }
-
-
 
     @SerializedName("avatar")
     @Expose
@@ -40,7 +36,7 @@ public class NguoiDung {
     private String thoiGianCapNhat;
     @SerializedName("soDienThoai")
     @Expose
-    private Integer soDienThoai;
+    private String soDienThoai;
     @SerializedName("ngaySinh")
     @Expose
     private String ngaySinh;
@@ -58,13 +54,13 @@ public class NguoiDung {
     private int baoCao;
 
     //Đăng nhập
-    public NguoiDung(int soDienThoai, String matKhau) {
+    public NguoiDung(String soDienThoai, String matKhau) {
         this.soDienThoai = soDienThoai;
         this.matKhau = matKhau;
     }
 
     //Đăng ký
-    public NguoiDung(String email, String matKhau, String hoTen, Integer soDienThoai) {
+    public NguoiDung(String email, String matKhau, String hoTen, String soDienThoai) {
         this.email = email;
         this.matKhau = matKhau;
         this.hoTen = hoTen;
@@ -80,10 +76,6 @@ public class NguoiDung {
         this.tieuSu = tieuSu;
         this.gioiTinh = gioiTinh;
     }
-
-
-
-
 
     public List<Object> getDangTheoDoi() {
         return dangTheoDoi;
@@ -149,11 +141,11 @@ public class NguoiDung {
         this.thoiGianCapNhat = thoiGianCapNhat;
     }
 
-    public Integer getSoDienThoai() {
+    public String getSoDienThoai() {
         return soDienThoai;
     }
 
-    public void setSoDienThoai(Integer soDienThoai) {
+    public void setSoDienThoai(String soDienThoai) {
         this.soDienThoai = soDienThoai;
     }
 

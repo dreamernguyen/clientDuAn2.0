@@ -50,7 +50,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("nguoiDung/dangKy")
-    Call<DuLieuTraVe> dangKy(@Field("hoTen") String hoTen,@Field("soDienThoai") int soDienThoai,@Field("matKhau") String matKhau);
+    Call<DuLieuTraVe> dangKy(@Field("hoTen") String hoTen,@Field("soDienThoai") String soDienThoai,@Field("matKhau") String matKhau);
 
     @FormUrlEncoded
     @POST("nguoiDung/dangNhapGG")

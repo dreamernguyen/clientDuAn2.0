@@ -154,12 +154,9 @@ public class DangBaiActivity extends AppCompatActivity {
                                 listURL.add(resultData.get("url").toString());
                                 Log.d("--", "onSuccess: "+listURL);
                                 if(listURL.size() == anhMoi.size()){
-
-
-
+                                    dangBaiViet(listURL);
+                                    Log.d("DangBaiActivity", "onSuccess: Đăng bài viết");
                                 }
-                                dangBaiViet(listURL);
-                                Log.d("DangBaiActivity", "onSuccess: Đăng bài viết");
                             }
                             else {
                                 listURL.add(resultData.get("url").toString());

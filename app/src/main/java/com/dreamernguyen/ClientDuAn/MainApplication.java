@@ -30,7 +30,7 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
 public class MainApplication extends Application {
-    public static final String HOST = "http://192.168.0.114:5000/";
+    public static final String HOST = "https://server-du-an.herokuapp.com/";
 
     private String TAG = "Main Application";
     public static final String CHANNEL_ID = "Chạy ngầm";
@@ -47,8 +47,11 @@ public class MainApplication extends Application {
         capQuyen();
 
 
-        Intent intent = new Intent(this, MyService.class);
-        startService(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(new Intent(this, MyService.class));
+        } else {
+            startService(new Intent(this, MyService.class));
+        }
 
 
     }
@@ -77,7 +80,7 @@ public class MainApplication extends Application {
             //Chạy ngầm
             CharSequence name = "Thông báo chạy ngầm";
             String description = "Ứng dụng đang chạy ngầm";
-            int importance = NotificationManager.IMPORTANCE_UNSPECIFIED;
+            int importance = NotificationManager.IMPORTANCE_NONE;
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription(description);
             //Tin nhắn

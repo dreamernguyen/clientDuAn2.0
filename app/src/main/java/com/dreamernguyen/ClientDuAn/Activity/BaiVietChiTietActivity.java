@@ -1,18 +1,25 @@
 package com.dreamernguyen.ClientDuAn.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +32,10 @@ import com.dreamernguyen.ClientDuAn.Models.BaiViet;
 import com.dreamernguyen.ClientDuAn.Models.BinhLuan;
 import com.dreamernguyen.ClientDuAn.Models.DuLieuTraVe;
 import com.dreamernguyen.ClientDuAn.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 
@@ -49,11 +60,13 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
     ViewPager vpgAnh;
     String idBaiViet;
     RecyclerView rvBinhLuan;
-    ImageView btnGui;
+    ImageView imTuyChinh;
+    MaterialButton btnGui;
     TextView tvTim,tvTrangThai,tvThoiGian;
     LikeButton btnLike;
     EditText edBinhLuan;
     CircleImageView imgAvatar;
+    LinearLayout layoutLoading,layoutContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +81,9 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
         tvTim = findViewById(R.id.tvTim);
         btnLike = findViewById(R.id.btnLike);
         imgAvatar = findViewById(R.id.imgAvatar);
-
+        imTuyChinh = findViewById(R.id.imTuyChinh);
+        layoutLoading = findViewById(R.id.layoutLoading);
+        layoutContent = findViewById(R.id.layoutContent);
         binhLuanAdapter = new BinhLuanAdapter(this);
         rvBinhLuan = findViewById(R.id.rvBinhLuan);
         btnGui = findViewById(R.id.btnGui);
@@ -99,7 +114,6 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
                         Log.d("Like", "onResponse: Đã like bài viết");
                         int soTim = Integer.parseInt(tvTim.getText().toString() )+ 1;
                         tvTim.setText(soTim+"");
-
                     }
 
                     @Override
@@ -134,12 +148,15 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
 
 
 
+
     }
     private void loadChiTiet(String idBaiViet){
         Call<DuLieuTraVe> call = ApiService.apiService.xemChiTiet(idBaiViet);
         call.enqueue(new Callback<DuLieuTraVe>() {
             @Override
             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                layoutLoading.setVisibility(View.GONE);
+                layoutContent.setVisibility(View.VISIBLE);
                 BaiViet baiViet = response.body().getBaiViet();
                 tvTenNguoiDung.setText(baiViet.getIdNguoiDung().getHoTen());
                 Glide.with(getApplicationContext()).load(baiViet.getIdNguoiDung().getAvatar()).into(imgAvatar);
@@ -190,6 +207,200 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
                 }else {
                     vpgAnh.setVisibility(View.GONE);
                 }
+                imTuyChinh.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(BaiVietChiTietActivity.this,R.style.BottomSheetThemeCustom);
+                        View viewDailog =   getLayoutInflater().inflate(R.layout.layout_bottom_sheet, new LinearLayout(BaiVietChiTietActivity.this));
+                        bottomSheetDialog.setContentView(viewDailog);
+                        bottomSheetDialog.show();
+                        Dialog dialog = new Dialog(BaiVietChiTietActivity.this);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.dialog_bao_cao_bai_viet);
+
+                        Window window = dialog.getWindow();
+                        if(window == null){
+                            return;
+                        }
+                        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+                        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+                        windowAttributes.gravity = Gravity.CENTER;
+                        window.setAttributes(windowAttributes);
+                        dialog.setCancelable(false);
+
+
+                        MaterialButton btnYes = dialog.findViewById(R.id.btnYes);
+                        MaterialButton btnNo = dialog.findViewById(R.id.btnNo);
+                        ChipGroup chipGroup = dialog.findViewById(R.id.chipGroup);
+                        final String[] a = {""};
+
+                        chipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(ChipGroup group, int checkedId) {
+                                Chip chip = dialog.findViewById(checkedId);
+                                a[0] = chip.getText().toString();
+                                Toast.makeText(getApplicationContext(), chip.getText().toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        btnYes.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Call<DuLieuTraVe> call = ApiService.apiService.baoCao(baiViet.getId(),LocalDataManager.getIdNguoiDung(),a[0]);
+                                call.enqueue(new Callback<DuLieuTraVe>() {
+                                    @Override
+                                    public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                                        if(response.body().getThongBao() != null){
+                                            Toast.makeText(getApplicationContext(), response.body().getThongBao(), Toast.LENGTH_SHORT).show();
+                                        }
+                                        finish();
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+
+                            }
+                        });
+                        btnNo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                        MaterialButton btnXoa,btnChinhSua,btnAn,btnAnKhoiToi,btnBaoCao,btnTheoDoi,btnBoTheoDoi;
+
+                        btnXoa = viewDailog.findViewById(R.id.btnXoa);
+                        btnChinhSua = viewDailog.findViewById(R.id.btnChinhSua);
+                        btnAn = viewDailog.findViewById(R.id.btnAn);
+                        btnAnKhoiToi = viewDailog.findViewById(R.id.btnAnKhoiToi);
+                        btnBaoCao = viewDailog.findViewById(R.id.btnBaoCao);
+                        btnTheoDoi = viewDailog.findViewById(R.id.btnTheoDoi);
+                        btnBoTheoDoi = viewDailog.findViewById(R.id.btnBoTheoDoi);
+
+                        if(baiViet.getIdNguoiDung().getDuocTheoDoi().size() > 0){
+                            for(int i = 0; i < baiViet.getIdNguoiDung().getDuocTheoDoi().size();i++){
+                                if(baiViet.getIdNguoiDung().getDuocTheoDoi().get(i).equals(LocalDataManager.getIdNguoiDung())){
+                                    btnBoTheoDoi.setVisibility(View.VISIBLE);
+                                    btnTheoDoi.setVisibility(View.GONE);
+
+                                }else {
+                                    btnBoTheoDoi.setVisibility(View.GONE);
+                                    btnTheoDoi.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        }
+                        if (baiViet.getIdNguoiDung().getId().equals(LocalDataManager.getIdNguoiDung())) {
+                            btnXoa.setVisibility(View.VISIBLE);
+                            btnChinhSua.setVisibility(View.VISIBLE);
+                            btnAn.setVisibility(View.VISIBLE);
+                            btnBaoCao.setVisibility(View.GONE);
+                            btnAnKhoiToi.setVisibility(View.GONE);
+                        } else {
+                            btnXoa.setVisibility(View.GONE);
+                            btnChinhSua.setVisibility(View.GONE);
+                            btnAn.setVisibility(View.GONE);
+                            btnBaoCao.setVisibility(View.VISIBLE);
+                            btnAnKhoiToi.setVisibility(View.VISIBLE);
+                        }
+                        btnXoa.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                bottomSheetDialog.dismiss();
+                                Call<DuLieuTraVe> call = ApiService.apiService.xoaBaiViet(baiViet.getId());
+                                call.enqueue(new Callback<DuLieuTraVe>() {
+                                    @Override
+                                    public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                                        Toast.makeText(getApplicationContext(), response.body().getThongBao(), Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            }
+                        });
+                        btnChinhSua.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                bottomSheetDialog.dismiss();
+                                Intent intent = new Intent(getApplicationContext(), DangBaiActivity.class);
+                                intent.putExtra("chucNang","Cập nhật");
+                                intent.putExtra("idBaiViet", baiViet.getId());
+                                startActivity(intent);
+                            }
+                        });
+                        btnAn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                bottomSheetDialog.dismiss();
+                                Call<DuLieuTraVe> call = ApiService.apiService.anBaiViet(baiViet.getId());
+                                call.enqueue(new Callback<DuLieuTraVe>() {
+                                    @Override
+                                    public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                                        Toast.makeText(getApplicationContext(), response.body().getThongBao(), Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+                        btnTheoDoi.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                bottomSheetDialog.dismiss();
+                                Call<DuLieuTraVe> call = ApiService.apiService.theoDoi(LocalDataManager.getIdNguoiDung(),baiViet.getIdNguoiDung().getId());
+                                call.enqueue(new Callback<DuLieuTraVe>() {
+                                    @Override
+                                    public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                                        Toast.makeText(getApplicationContext(), response.body().getThongBao(), Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+                        btnAnKhoiToi.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Call<DuLieuTraVe> call = ApiService.apiService.anBaiVietKhoiToi(baiViet.getId(),baiViet.getIdNguoiDung().getId());
+                                call.enqueue(new Callback<DuLieuTraVe>() {
+                                    @Override
+                                    public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                                        Toast.makeText(getApplicationContext(), response.body().getThongBao(), Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+                        btnBaoCao.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.show();
+                            }
+                        });
+                    }
+
+                });
             }
 
             @Override

@@ -1,50 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Fragment.TheoDoiFragment"
-    android:id="@+id/refreshLayout"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Fragment.TheoDoiFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:background="@color/DodgerBlue"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:scaleType="centerCrop"
-            android:id="@+id/avatar"
-            android:src="@drawable/anhdemo1"/>
-        <TextView
-            android:id="@+id/tv1"
-            android:background="@drawable/background2"
-            android:elevation="2dp"
-            android:padding="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
-            android:textSize="14dp"
+        android:orientation="vertical">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Bạn đang nghỉ gì "/>
-    </LinearLayout>
+            android:background="@color/DodgerBlue"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="5dp">
 
-<androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvBaiViet"
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/anhdemo1" />
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/background2"
+                android:elevation="2dp"
+                android:hint="Bạn đang nghỉ gì "
+                android:padding="10dp"
+                android:textSize="14dp" />
+        </LinearLayout>
+        <include layout="@layout/item_loading"
+            android:id="@+id/listLoading"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBaiViet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

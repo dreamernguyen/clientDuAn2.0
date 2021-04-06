@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaos.view.PinView;
@@ -37,29 +38,27 @@ public class XacThucActivity extends AppCompatActivity {
     PinView pinView;
     String mVerificationId;
     Button btnXacThuc;
-
-    int sdt;
-    String hoTen,matKhau;
+    String hoTen,matKhau,SDT;
+    TextView tvXacThuc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xac_thuc);
         pinView = findViewById(R.id.pinView);
-
         btnXacThuc = findViewById(R.id.btnXacThuc);
+        tvXacThuc = findViewById(R.id.tvXacThuc);
         mAuth = FirebaseAuth.getInstance();
         Intent i = getIntent();
-        i.getStringExtra("SDT");
-        sdt = Integer.parseInt(i.getStringExtra("SDT"));
-        hoTen = i.getStringExtra("hoTen");
-        matKhau = i.getStringExtra("matKhau");
-//        btnNhanMa.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                guiXacThuc(edSdt.getText().toString());
-//            }
-//        });
-        guiXacThuc(sdt+"");
+        if (i.getExtras() != null){
+            SDT = i.getStringExtra("SDT");
+            hoTen = i.getStringExtra("hoTen");
+            matKhau = i.getStringExtra("matKhau");
+        }
+        if(SDT != null){
+            tvXacThuc.setText("Mã xác nhận đã được gửi đến số điện thoại "+SDT);
+            guiXacThuc(SDT+"");
+        }
+
         btnXacThuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,7 +148,7 @@ public class XacThucActivity extends AppCompatActivity {
                 });
     }
     public void DangKy(){
-        Call<DuLieuTraVe> call = ApiService.apiService.dangKy(hoTen,sdt,matKhau);
+        Call<DuLieuTraVe> call = ApiService.apiService.dangKy(hoTen,SDT,matKhau);
         call.enqueue(new Callback<DuLieuTraVe>() {
             @Override
             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {

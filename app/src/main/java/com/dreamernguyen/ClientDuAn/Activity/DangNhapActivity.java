@@ -158,7 +158,7 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
         validateForm();
         if (layoutSDT.getError() == null || layoutMatKhau.getError() == null) {
             String mMatKhau = edMatKhau.getText().toString();
-            int mSdt = Integer.parseInt(edSDT.getText().toString());
+            String mSdt = edSDT.getText().toString();
             NguoiDung nguoiDung = new NguoiDung(mSdt, mMatKhau);
             Call<DuLieuTraVe> call = ApiService.apiService.dangNhap(nguoiDung);
             call.enqueue(new Callback<DuLieuTraVe>() {
@@ -173,11 +173,14 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
                         layoutMatKhau.setError(thongBao);
                     } else {
                         Toast.makeText(DangNhapActivity.this, thongBao, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    LocalDataManager.setIdNguoiDung(nguoiDung.getId());
-                    LocalDataManager.setNguoiDung(nguoiDung);
-                    startActivity(intent);
                     }
+                    if(nguoiDung != null){
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        LocalDataManager.setIdNguoiDung(nguoiDung.getId());
+                        LocalDataManager.setNguoiDung(nguoiDung);
+                        startActivity(intent);
+                    }
+
                 }
 
                 @Override

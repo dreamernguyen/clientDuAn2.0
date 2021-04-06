@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ import com.dreamernguyen.ClientDuAn.LocalDataManager;
 import com.dreamernguyen.ClientDuAn.Models.BaiViet;
 import com.dreamernguyen.ClientDuAn.Models.DuLieuTraVe;
 import com.dreamernguyen.ClientDuAn.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 
 import java.util.List;
@@ -40,6 +43,7 @@ public class KhamPhaFragment extends Fragment {
     SwipeRefreshLayout refreshLayout;
     TextView tv;
     ImageView imAvatar;
+    ScrollView layoutLoading;
 
 
 
@@ -50,8 +54,10 @@ public class KhamPhaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_kham_pha, container, false);
         refreshLayout = view.findViewById(R.id.refreshLayout);
-
+        layoutLoading = view.findViewById(R.id.listLoading);
         tv = view.findViewById(R.id.tv1);
+
+
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +96,7 @@ public class KhamPhaFragment extends Fragment {
             @Override
             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
                 List<BaiViet> listBaiViet = response.body().getDanhSachBaiViet();
+                layoutLoading.setVisibility(View.GONE);
                 if(listBaiViet.size() > 0){
                     baiVietAdapter.setData(listBaiViet);
                     baiVietAdapter.random();

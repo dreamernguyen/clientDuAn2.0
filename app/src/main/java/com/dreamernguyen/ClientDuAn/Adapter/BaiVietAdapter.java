@@ -1,14 +1,18 @@
 package com.dreamernguyen.ClientDuAn.Adapter;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,12 +37,15 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
@@ -78,23 +85,17 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
 
     @Override
     public void onBindViewHolder(@NonNull BaiVietViewHolder holder, int position) {
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                holder.layoutLoading.stopShimmer();
-                holder.layoutLoading.hideShimmer();
-                holder.layoutLoading.setVisibility(View.GONE);
-                holder.layoutMain.setVisibility(View.VISIBLE);
-            }
-        },2000);
-        BaiViet baiViet = listBaiViet.get(position);
+
+        holder.layoutLoading.setVisibility(View.GONE);
+        holder.layoutMain.setVisibility(View.VISIBLE);
+        BaiViet baiViet = listBaiViet.get(holder.getAdapterPosition());
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
         Calendar cal = Calendar.getInstance();
         Date now = cal.getTime();
         SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
         format.setTimeZone(TimeZone.getTimeZone("UTC+7"));
+
 
 
         try {
@@ -162,6 +163,65 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context,R.style.BottomSheetThemeCustom);
                 bottomSheetDialog.setContentView(viewDailog);
                 bottomSheetDialog.show();
+                Dialog dialog = new Dialog(context);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_bao_cao_bai_viet);
+
+                Window window = dialog.getWindow();
+                if(window == null){
+                    return;
+                }
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+                WindowManager.LayoutParams windowAttributes = window.getAttributes();
+                windowAttributes.gravity = Gravity.CENTER;
+                window.setAttributes(windowAttributes);
+                dialog.setCancelable(false);
+
+
+                MaterialButton btnYes = dialog.findViewById(R.id.btnYes);
+                MaterialButton btnNo = dialog.findViewById(R.id.btnNo);
+                ChipGroup chipGroup = dialog.findViewById(R.id.chipGroup);
+                final String[] a = {""};
+
+                chipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(ChipGroup group, int checkedId) {
+                        Chip chip = dialog.findViewById(checkedId);
+                        a[0] = chip.getText().toString();
+                        Toast.makeText(context, chip.getText().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+                btnYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Call<DuLieuTraVe> call = ApiService.apiService.baoCao(baiViet.getId(),LocalDataManager.getIdNguoiDung(),a[0]);
+                        call.enqueue(new Callback<DuLieuTraVe>() {
+                            @Override
+                            public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                                listBaiViet.remove(holder.getAdapterPosition());
+                                notifyItemRemoved(holder.getAdapterPosition());
+                                if(response.body().getThongBao() != null){
+                                    Toast.makeText(context, response.body().getThongBao(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+                    }
+                });
+                btnNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
 
                 MaterialButton btnXoa,btnChinhSua,btnAn,btnAnKhoiToi,btnBaoCao,btnTheoDoi,btnBoTheoDoi;
 
@@ -207,10 +267,8 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                             @Override
                             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
                                 Toast.makeText(context, response.body().getThongBao(), Toast.LENGTH_SHORT).show();
-                                listBaiViet.remove(position);
-                                notifyItemChanged(position);
-                                notifyItemRangeRemoved(position, listBaiViet.size());
-
+                                listBaiViet.remove(holder.getAdapterPosition());
+                                notifyItemRemoved(holder.getAdapterPosition());
                             }
 
                             @Override
@@ -239,9 +297,9 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                         call.enqueue(new Callback<DuLieuTraVe>() {
                             @Override
                             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                                listBaiViet.remove(holder.getAdapterPosition());
+                                notifyItemRemoved(holder.getAdapterPosition());
                                 Toast.makeText(context, response.body().getThongBao(), Toast.LENGTH_SHORT).show();
-                                notifyDataSetChanged();
-
                             }
 
                             @Override
@@ -260,8 +318,6 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                             @Override
                             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
                                 Toast.makeText(context, response.body().getThongBao(), Toast.LENGTH_SHORT).show();
-                                notifyDataSetChanged();
-
                             }
 
                             @Override
@@ -278,22 +334,29 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                         call.enqueue(new Callback<DuLieuTraVe>() {
                             @Override
                             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
-
+                                listBaiViet.remove(holder.getAdapterPosition());
+                                notifyItemRemoved(holder.getAdapterPosition());
+                                Toast.makeText(context, response.body().getThongBao(), Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
-
+                                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                 });
-
+                btnBaoCao.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.show();
+                    }
+                });
             }
 
         });
 
-        holder.tvBinhLuan.setOnClickListener(new View.OnClickListener() {
+        holder.btnBinhLuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, BaiVietChiTietActivity.class);
@@ -354,7 +417,6 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                 });
 
             }
-
             @Override
             public void unLiked(LikeButton likeButton) {
                 Call<DuLieuTraVe> call = ApiService.apiService.boThichBaiViet(baiViet.getId(),LocalDataManager.getIdNguoiDung());
@@ -388,7 +450,8 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
     }
 
     public class BaiVietViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTenNguoiDung, tvThoiGian, tvNoiDung, tvTrangThai, tvLuotTim,tvBinhLuan;
+        TextView tvTenNguoiDung, tvThoiGian, tvNoiDung, tvTrangThai, tvLuotTim;
+        MaterialButton btnBinhLuan,btnLuotThich;
         ViewPager vpgAnh;
         ImageView imTuyChinh;
         CircleImageView imgAvatar;
@@ -403,7 +466,8 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
             tvThoiGian = itemView.findViewById(R.id.tvThoiGian2);
             tvNoiDung = itemView.findViewById(R.id.tvNoiDung);
             tvLuotTim = itemView.findViewById(R.id.tvTim);
-            tvBinhLuan = itemView.findViewById(R.id.tvBinhLuan);
+            btnBinhLuan = itemView.findViewById(R.id.btnBinhLuan);
+            btnLuotThich = itemView.findViewById(R.id.btnLuotThich);
             tvTrangThai = itemView.findViewById(R.id.tvTrangThai);
             vpgAnh = itemView.findViewById(R.id.vpgImage);
             imTuyChinh = itemView.findViewById(R.id.imTuyChinh);

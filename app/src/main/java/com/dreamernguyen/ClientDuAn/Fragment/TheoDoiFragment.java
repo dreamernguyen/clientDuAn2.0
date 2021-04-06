@@ -73,7 +73,6 @@ public class TheoDoiFragment extends Fragment {
                 List<BaiViet> listBaiViet = response.body().getDanhSachBaiViet();
                 if(listBaiViet.size() > 0){
                     baiVietAdapter.setData(listBaiViet);
-                    baiVietAdapter.random();
                 }else {
                     Log.d("loadBaiVietTheoDoi", "onFailure: danh sách bài viết trống");
                 }

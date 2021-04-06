@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         window.setStatusBarColor(Color.TRANSPARENT);
 
+
         loadNguoiDung();
 
         viewPager = findViewById(R.id.viewPager);

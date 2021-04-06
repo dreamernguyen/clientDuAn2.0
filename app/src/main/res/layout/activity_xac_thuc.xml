@@ -11,14 +11,22 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Xác thực"
             android:textSize="50dp" />
+        <TextView
+            android:id="@+id/tvXacThuc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Mã xác nhận đã được gửi đến số điện thoại "
+            android:layout_marginTop="30dp"
+            android:textSize="20dp"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            />
 
 
         <com.chaos.view.PinView
@@ -29,22 +37,35 @@
             app:itemCount="6"
             app:itemHeight="50dp"
             app:itemWidth="50dp"
-            app:lineColor="@color/BlueViolet"
+            app:lineColor="@color/MediumVioletRed"
             style="@style/PinWidget.PinView"
             android:inputType="number"
-            android:itemBackground="@color/SkyBlue"
+            android:itemBackground="@color/DodgerBlue"
             android:cursorVisible="true"
             app:cursorColor="@color/black"
             app:hideLineWhenFilled="true"
             app:itemRadius="5dp"
-            android:layout_marginTop="20dp"/>
-        <Button
+            android:layout_marginTop="30dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:gravity="center">
+        <Button
             android:id="@+id/btnXacThuc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Xác thực"
-            android:layout_gravity="center"/>
+            android:text="Xác nhận"
+            android:backgroundTint="@color/LightBlue"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        <Button
+            android:id="@+id/btnGuiLaiMa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gửi lại mã"
+            android:layout_marginLeft="20dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

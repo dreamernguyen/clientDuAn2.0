@@ -1,42 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:elevation="8dp"
-    android:background="@drawable/background1"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
-    android:layout_marginTop="6dp"
-    android:padding="6dp"
     android:id="@+id/layout"
-    android:orientation="vertical">
-<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="6dp"
+    android:background="@drawable/background1"
+    android:elevation="8dp"
     android:orientation="vertical"
-    android:id="@+id/layoutMain"
-    android:visibility="gone">
+    android:padding="6dp">
+
+    <LinearLayout
+        android:id="@+id/layoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="5dp">
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgAvatar"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/logo_main"
-                android:scaleType="centerCrop">
-            </de.hdodenhof.circleimageview.CircleImageView>
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo_main"></de.hdodenhof.circleimageview.CircleImageView>
+
             <LinearLayout
-                android:layout_weight="5"
-                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_weight="5"
+                android:orientation="vertical"
+                android:padding="5dp">
+
                 <TextView
                     android:id="@+id/tvTenNguoiDung"
                     android:layout_width="wrap_content"
@@ -44,277 +48,274 @@
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
-                        android:layout_weight="1"
                         android:id="@+id/tvTrangThai"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/black"
-                        android:textSize="10sp"/>
-                    <TextView
                         android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+
+                    <TextView
                         android:id="@+id/tvThoiGian2"
-                        android:text="Thời gian nè"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="Thời gian nè"
                         android:textColor="@color/black"
-                        android:textSize="10sp"/>
+                        android:textSize="10sp" />
                 </LinearLayout>
             </LinearLayout>
+
             <ImageView
-                android:layout_weight="0.5"
                 android:id="@+id/imTuyChinh"
-                android:layout_gravity="center"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_weight="0.5"
                 android:src="@drawable/ic_option" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
+                android:id="@+id/tvNoiDung"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ellipsize="end"
+                android:lineHeight="20dp"
                 android:maxLines="10"
                 android:padding="5dp"
-                android:lineHeight="20dp"
-                android:paddingLeft="10dp"
-                android:ellipsize="end"
-                android:id="@+id/tvNoiDung"/>
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
             <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vpgImage"
                 android:layout_width="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
                 android:layout_height="400dp"
                 android:layout_gravity="center"
-                android:visibility="visible"
-                android:id="@+id/vpgImage">
-            </androidx.viewpager.widget.ViewPager>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:visibility="visible"></androidx.viewpager.widget.ViewPager>
         </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="5dp"
-        android:paddingTop="15dp"
-        android:paddingRight="5dp"
-        android:paddingBottom="15dp">
 
-        <com.like.LikeButton
-            android:id="@+id/btnLike"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:icon_size="7dp"
-            app:icon_type="heart"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvTim"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="5dp"
-            android:text="99"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnLike"
-            app:layout_constraintTop_toTopOf="parent" />
-        <TextView
-            android:id="@+id/tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="5dp"
-            android:text="Yêu thích"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvTim"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="2">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="5dp"
-            android:scaleType="center"
-            android:src="@drawable/ic_comment"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv"
-            app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
 
-        <TextView
-            android:id="@+id/tvBinhLuan"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="5dp"
-            android:text="Bình luận"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="parent" />
+                <com.like.LikeButton
+                    android:id="@+id/btnLike"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    app:icon_size="10dp"
+                    app:icon_type="heart" />
 
-        <ImageView
-            android:id="@+id/btnChiaSe"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="5dp"
-            android:src="@drawable/ic_share"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvBinhLuan"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/tvTim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="99"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvChiaSe"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="5dp"
-            android:text="Chia sẻ"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnChiaSe"
-            app:layout_constraintTop_toTopOf="parent" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLuotThich"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingRight="22dp"
+                    android:text="Yêu thích"
+                    android:textAlignment="textEnd"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:background="@color/gray" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBinhLuan"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="99  Bình luận"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:icon="@drawable/ic_comment"
+                app:iconSize="22sp"
+                app:iconTint="@color/black" />
+
+        </LinearLayout>
+    </LinearLayout>
+
     <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/layoutLoading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/layoutLoading">
+        android:visibility="gone">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/view1"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@color/LightGrey"
-                    android:scaleType="centerCrop">
-                </de.hdodenhof.circleimageview.CircleImageView>
+                    android:scaleType="centerCrop"></de.hdodenhof.circleimageview.CircleImageView>
+
                 <LinearLayout
-                    android:layout_weight="5"
-                    android:padding="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_weight="5"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
                     <TextView
                         android:id="@+id/view2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/black"
                         android:background="@color/LightGrey"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="5dp">
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
                         <TextView
-                            android:layout_weight="1"
                             android:id="@+id/view3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:textColor="@color/black"
-                            android:background="@color/LightGrey"
-                            android:textSize="10sp"/>
-                        <TextView
                             android:layout_weight="1"
-                            android:id="@+id/view4"
                             android:background="@color/LightGrey"
+                            android:textColor="@color/black"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/view4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/LightGrey"
                             android:textColor="@color/black"
-                            android:textSize="10sp"/>
+                            android:textSize="10sp" />
                     </LinearLayout>
                 </LinearLayout>
+
                 <ImageView
-                    android:layout_weight="0.5"
-                    android:layout_gravity="center"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
                     android:src="@drawable/ic_option" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
+                    android:id="@+id/view5"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
+                    android:background="@color/LightGrey"
+                    android:ellipsize="end"
+                    android:lineHeight="20dp"
                     android:maxLines="10"
                     android:padding="5dp"
-                    android:lineHeight="20dp"
                     android:paddingLeft="10dp"
-                    android:ellipsize="end"
-                    android:background="@color/LightGrey"
-                    android:id="@+id/view5"/>
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
                 <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/view6"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
                     android:layout_height="400dp"
                     android:layout_gravity="center"
-                    android:visibility="visible"
+                    android:layout_marginTop="10dp"
                     android:background="@color/LightGrey"
-                    android:id="@+id/view6">
-                </androidx.viewpager.widget.ViewPager>
+                    android:visibility="visible"></androidx.viewpager.widget.ViewPager>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:paddingLeft="5dp"
                 android:paddingTop="15dp"
                 android:paddingRight="5dp"
-                android:paddingBottom="15dp"
-                android:orientation="horizontal">
+                android:paddingBottom="15dp">
 
                 <TextView
                     android:id="@+id/view7"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:background="@color/LightGrey"/>
+                    android:background="@color/LightGrey" />
 
                 <TextView
                     android:id="@+id/view8"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="5dp"
-                    android:background="@color/LightGrey"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/view9"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:background="@color/LightGrey"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:background="@color/LightGrey" />
+
 
 
 
