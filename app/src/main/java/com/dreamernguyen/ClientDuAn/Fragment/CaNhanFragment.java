@@ -48,15 +48,29 @@ public class CaNhanFragment extends Fragment {
     RecyclerView rcvBaiViet;
     BaiVietAdapter baiVietAdapter;
     CircleImageView imgAvatar;
-    ImageView imQR;
+    ImageView imQR,imgMenu;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ca_nhan, container, false);
         tvTenNguoiDung = view.findViewById(R.id.tvTenNguoiDung);
-        tvDangTheoDoi = view.findViewById(R.id.tvDangTheoGioi);
-        tvTheoDoi = view.findViewById(R.id.tvTheoGioi);
+        imgMenu = view.findViewById(R.id.imgMenu);
+        imgMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Đã click", Toast.LENGTH_SHORT).show();
+            }
+        });
+        tvTenNguoiDung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), tvTenNguoiDung.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        tvDangTheoDoi = view.findViewById(R.id.tvDangTheoDoi);
+
+        tvTheoDoi = view.findViewById(R.id.tvTheoDoi);
         rcvBaiViet = view.findViewById(R.id.rcvBaiViet);
         btnDangBai = view.findViewById(R.id.btnDangBai);
         imgAvatar = view.findViewById(R.id.imgAvatar);

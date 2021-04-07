@@ -1,220 +1,214 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Activity.MatHangChiTietActivity">
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#93DAF3"
-        android:orientation="horizontal"
-        android:paddingTop="15dp">
-
-        <ImageView
-            android:id="@+id/imgBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/anhdemo1" />
-
-    </LinearLayout>
-
-
-    -
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/imgHinhAnh"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vpgImage"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                />
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                android:visibility="visible">
+            </androidx.viewpager.widget.ViewPager>
+            <TextView
+                android:id="@+id/tvTieuDeChiTiet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Tiêu đề sản phẩm"
+                android:textColor="@color/black"
+                android:textSize="21dp" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/tvTieuDeChiTiet"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tvGiaChiTiet"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="iphonx"
+                    android:layout_gravity="center"
+                    android:layout_weight="6"
+                    android:text="giá bán"
+                    android:textColor="@color/red"
+                    android:textSize="18dp"
+                    android:visibility="visible"/>
+
+                <TextView
+                    android:id="@+id/tvSuaTin"
+                    android:layout_margin="1dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/with_shadow"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Sửa tin"
                     android:textColor="@color/black"
-                    android:textSize="21dp" />
-
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="5"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tvGiaChiTiet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:layout_weight="3"
-                        android:text="giá"
-                        android:textColor="@color/red"
-                        android:textSize="21dp" />
-
-                    <TextView
-                        android:id="@+id/tvSuaTin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:background="@drawable/with_shadow"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:padding="8dp"
-                        android:text="Sửa tin"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/tvXoaTin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:background="@drawable/with_shadow"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:padding="8dp"
-                        android:text="Xóa tin"
-                        android:textColor="@color/black" />
-
-
-                </LinearLayout>
+                    android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/tvDiaChiChiTiet"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tvXoaTin"
+                    android:layout_margin="1dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/with_shadow"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Xóa tin"
+                    android:textColor="@color/black"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:drawableLeft="@drawable/ic_love"
+                    android:drawablePadding="5dp"
+                    android:id="@+id/tvLuTin"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="thời gian"
-                    android:textSize="16dp" />
+                    android:background="@drawable/bg_luu_tin"
+                    android:gravity="center_horizontal"
+                    android:text="Lưu tin"
+                    android:textColor="@color/white"
+                    android:padding="5dp"
+                    android:visibility="visible"/>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tvDiaChiChiTiet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="thời gian"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tvThoiGianChiTiet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="thời gian"
+                    android:textSize="16dp" />
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="#968D8D" />
-
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_margin="10dp"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal">
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgAvatar"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_below="@+id/imageView"
                     android:layout_gravity="center"
                     android:src="@drawable/anhdemo1" />
-
-
-                -
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingRight="10dp">
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tvDangsanpham"
+                        android:id="@+id/tvHoTen"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:elevation="100dp"
-                        android:gravity="top"
-                        android:padding="10dp"
-                        android:text="Nguyễn Huy"
+                        android:gravity="left"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="Họ tên người dùng"
                         android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/tvXemTrang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:background="@drawable/with_shadow"
                         android:padding="10dp"
                         android:text="Xem trang"
                         android:textColor="@color/black" />
-
                 </LinearLayout>
-
             </LinearLayout>
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:text="Số điện thoại người bán"
+                android:textSize="18dp"
+                android:id="@+id/tvSdt"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_luu_tin"
+                    android:text="Nhắn tin"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_luu_tin"
+                    android:text="Gọi điện"/>
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="#968D8D" />
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Mô tả sản phẩm"
+                android:textColor="@color/black"
+                android:textSize="24dp" />
             <TextView
                 android:id="@+id/tvNoiDungChiTiet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:paddingTop="10dp"
-                android:text="nội dung" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:padding="10dp"
-                android:text="Hỏi người bán qua chat"
-                android:textColor="#9C9A9A" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="#968D8D" />
-
+                android:padding="5dp"
+                android:text="Mô tả sản phẩm"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
         </LinearLayout>
-
     </ScrollView>
-
 </LinearLayout>
