@@ -19,23 +19,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YoKaFo"
         android:usesCleartextTraffic="true">
+
         <service
             android:name=".MyService"
             android:enabled="true"
             android:exported="true" />
-        <activity android:name=".Activity.SplashActivity" >
+
+        <activity android:name=".Activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.BaiVietYeuThichActivity"/>
         <activity android:name=".Activity.MatHangChiTietActivity" />
         <activity android:name=".Activity.TimKiemMatHangActivity" />
         <activity android:name=".Activity.TrangCaNhanActivity" />
         <activity android:name=".Activity.XacThucActivity" />
         <activity android:name=".Activity.DangKyActivity" />
-        <activity android:name=".Activity.DangNhapActivity"/>
+        <activity android:name=".Activity.DangNhapActivity" />
         <activity android:name=".AnhChiTietActivity" />
         <activity android:name=".Activity.NhanTinActivity" />
         <activity android:name=".Activity.DangMatHangActivity" />

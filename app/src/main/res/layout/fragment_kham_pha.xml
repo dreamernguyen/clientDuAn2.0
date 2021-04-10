@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".Fragment.TheoDoiFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/DodgerBlue"
+            android:background="@color/main_blue"
             android:orientation="horizontal"
             android:paddingLeft="15dp"
             android:paddingTop="5dp"
@@ -38,16 +32,24 @@
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/background2"
                 android:elevation="2dp"
-                android:hint="Bạn đang nghỉ gì "
+                android:hint="Bạn đang nghĩ gì "
                 android:padding="10dp"
                 android:textSize="14dp" />
         </LinearLayout>
+
         <include layout="@layout/item_loading"
             android:id="@+id/listLoading"/>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/refreshLayout">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBaiViet"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </LinearLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+</LinearLayout>

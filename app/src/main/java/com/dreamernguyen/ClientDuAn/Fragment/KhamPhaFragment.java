@@ -77,13 +77,7 @@ public class KhamPhaFragment extends Fragment {
             @Override
             public void onRefresh() {
                 loadBaiVietKhamPha();
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        refreshLayout.setRefreshing(false);
-                    }
-                },3000);
+
             }
         });
         Glide.with(this).load(LocalDataManager.getNguoiDung().getAvatar()).circleCrop().into(imAvatar);
@@ -97,6 +91,7 @@ public class KhamPhaFragment extends Fragment {
             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
                 List<BaiViet> listBaiViet = response.body().getDanhSachBaiViet();
                 layoutLoading.setVisibility(View.GONE);
+                refreshLayout.setRefreshing(false);
                 if(listBaiViet.size() > 0){
                     baiVietAdapter.setData(listBaiViet);
                     baiVietAdapter.random();

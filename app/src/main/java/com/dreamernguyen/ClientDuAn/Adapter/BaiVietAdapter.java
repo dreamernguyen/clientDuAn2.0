@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -96,8 +98,6 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
         SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
         format.setTimeZone(TimeZone.getTimeZone("UTC+7"));
 
-
-
         try {
             Date date = format.parse(baiViet.getThoiGianTao());
             long diff = now.getTime() - date.getTime();
@@ -122,7 +122,6 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                 holder.tvThoiGian.setText("Vừa xong");
             }
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         if (baiViet.getDaAn()) {
@@ -233,15 +232,13 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                 btnBaoCao = viewDailog.findViewById(R.id.btnBaoCao);
                 btnTheoDoi = viewDailog.findViewById(R.id.btnTheoDoi);
                 btnBoTheoDoi = viewDailog.findViewById(R.id.btnBoTheoDoi);
+                btnTheoDoi.setVisibility(View.VISIBLE);
+                btnBoTheoDoi.setVisibility(View.GONE);
                 if(baiViet.getIdNguoiDung().getDuocTheoDoi().size() > 0){
                     for(int i = 0; i < baiViet.getIdNguoiDung().getDuocTheoDoi().size();i++){
                         if(baiViet.getIdNguoiDung().getDuocTheoDoi().get(i).equals(LocalDataManager.getIdNguoiDung())){
                             btnBoTheoDoi.setVisibility(View.VISIBLE);
                             btnTheoDoi.setVisibility(View.GONE);
-
-                        }else {
-                            btnBoTheoDoi.setVisibility(View.GONE);
-                            btnTheoDoi.setVisibility(View.VISIBLE);
                         }
                     }
                 }
@@ -251,6 +248,8 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                     btnAn.setVisibility(View.VISIBLE);
                     btnBaoCao.setVisibility(View.GONE);
                     btnAnKhoiToi.setVisibility(View.GONE);
+                    btnTheoDoi.setVisibility(View.GONE);
+                    btnBoTheoDoi.setVisibility(View.GONE);
                 } else {
                     btnXoa.setVisibility(View.GONE);
                     btnChinhSua.setVisibility(View.GONE);
@@ -390,8 +389,6 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
             for(int i = 0; i < baiViet.getLuotThich().size();i++){
                 if(baiViet.getLuotThich().get(i).getId().equals(LocalDataManager.getIdNguoiDung())){
                     holder.btnLike.setLiked(true);
-                }else {
-                    holder.btnLike.setLiked(false);
                 }
             }
         }
@@ -436,6 +433,24 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                     }
                 });
 
+            }
+        });
+
+        BottomSheetDialog bottomSheetDialog2 = new BottomSheetDialog(context,R.style.BottomSheetThemeCustom);
+        View viewDialog2 =   ((FragmentActivity) context).getLayoutInflater().inflate(R.layout.dialog_luot_thich,null);
+        bottomSheetDialog2.setContentView(viewDialog2);
+
+        RecyclerView rvLuotThich = viewDialog2.findViewById(R.id.rvLuotThich);
+        rvLuotThich.setLayoutManager(new LinearLayoutManager(context,RecyclerView.VERTICAL,false));
+        NguoiDungAdapter nguoiDungAdapter = new NguoiDungAdapter(context);
+        rvLuotThich.setAdapter(nguoiDungAdapter);
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(context,DividerItemDecoration.VERTICAL);
+        rvLuotThich.addItemDecoration(itemDecoration);
+        nguoiDungAdapter.setData(baiViet.getLuotThich());
+        holder.btnLuotThich.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog2.show();
             }
         });
 

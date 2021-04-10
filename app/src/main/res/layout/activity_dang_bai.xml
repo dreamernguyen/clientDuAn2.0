@@ -46,29 +46,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <EditText
-            android:id="@+id/edNoiDung"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_margin="10dp"
-            android:minLines="5"
-            android:maxLines="10"
-            android:elevation="5dp"
-            android:gravity="top"
-            android:background="@drawable/background1"
-            android:hint="Bạn đang nghĩ gì ?"/>
-        <TextView
+            android:layout_marginTop="10dp"
+            app:boxCornerRadiusBottomStart="15dp"
+            app:boxCornerRadiusBottomEnd="15dp"
+            app:boxCornerRadiusTopEnd="15dp"
+            app:boxCornerRadiusTopStart="15dp"
+            android:elevation="25dp"
+            app:hintEnabled="false"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edNoiDung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:minLines="5"
+                android:maxLines="10"
+                android:hint="Bạn đang nghĩ gì ?"
+                android:gravity="top"
+                android:inputType="textMultiLine"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnThemAnh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/LightSkyBlue"
             android:textColor="@color/black"
-            android:padding="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="Thêm ảnh"/>
+            app:icon="@drawable/ic_camera"
+            app:iconGravity="textStart"
+            app:cornerRadius="10dp"
+            app:iconTint="@color/LightCoral"
+            app:backgroundTint="@color/LightSkyBlue"
+            android:text="Thêm ảnh"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAnh"

@@ -92,7 +92,7 @@ public class MyService extends Service {
 
                     }
                 });
-                mSocket.on("thongBao", new Emitter.Listener() {
+                mSocket.on("thongBaoMoi", new Emitter.Listener() {
                     @Override
                     public void call(Object... args) {
                         Gson gson = new Gson();

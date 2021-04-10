@@ -47,7 +47,6 @@ public class DangMatHangThongTinFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dang_mat_hang_thong_tin, container, false);
 
         tvBack = view.findViewById(R.id.tvBack);
-        tv = view.findViewById(R.id.tv);
         lvThongTin = view.findViewById(R.id.lvThongTin);
 
 

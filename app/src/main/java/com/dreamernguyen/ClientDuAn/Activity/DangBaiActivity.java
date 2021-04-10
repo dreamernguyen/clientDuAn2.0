@@ -29,6 +29,7 @@ import com.dreamernguyen.ClientDuAn.LocalDataManager;
 import com.dreamernguyen.ClientDuAn.Models.BaiViet;
 import com.dreamernguyen.ClientDuAn.Models.DuLieuTraVe;
 import com.dreamernguyen.ClientDuAn.R;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -47,7 +48,7 @@ public class DangBaiActivity extends AppCompatActivity {
     RecyclerView rvAnh;
     AnhAdapter anhAdapter;
     TextView btnThemAnh,btnDang,tvTieuDe;
-    EditText edNoiDung;
+    TextInputEditText edNoiDung;
     ImageView imgBack;
 
     List<Uri> listPath = new ArrayList<>();

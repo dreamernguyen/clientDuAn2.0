@@ -30,7 +30,7 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
 public class MainApplication extends Application {
-    public static final String HOST = "https://server-du-an.herokuapp.com/";
+    public static final String HOST = "http://192.168.0.114:5000/";
 
     private String TAG = "Main Application";
     public static final String CHANNEL_ID = "Chạy ngầm";

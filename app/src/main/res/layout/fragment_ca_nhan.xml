@@ -1,193 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightCyan"
+    android:background="#03A9F4"
+    android:paddingTop="25dp"
+    android:orientation="vertical"
     tools:context=".Fragment.CaNhanFragment">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvXemTrangCaNhan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapseToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_gradient"
-                android:orientation="vertical"
-                app:layout_collapseMode="parallax">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgAvatar"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
-                    android:src="@drawable/anhdemo1"
-                    app:layout_collapseMode="parallax"
-                    />
-
-                <TextView
-                    android:id="@+id/tvTenNguoiDung"
-                    android:layout_width="wrap_content"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_gravity="center_horizontal"
-                    android:paddingTop="20dp"
-                    android:text="Họ và tên"
-                    android:textColor="@color/white"
-                    android:textSize="24dp" />
-
-                <TextView
-                    android:id="@+id/tvMota"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:maxLines="3"
-                    android:text="abc"
-                    android:textColor="@color/white"
-                    android:textSize="13dp" />
-
-                <ImageView
-                    android:id="@+id/imQR"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"/>
-            </LinearLayout>
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark"
-                app:layout_collapseMode="pin">
-
-                <ImageView
-                    android:id="@+id/imgMenu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_gravity="right"
-                    android:paddingTop="15dp"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_option" />
-
-            </androidx.appcompat.widget.Toolbar>
-
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:elevation="15dp"
+        app:cardCornerRadius="10dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:paddingBottom="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="20dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@color/gray" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:weightSum="2">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:padding="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/background1">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Theo dõi"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tvTheoDoi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="99"
-                        android:gravity="center"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:background="@drawable/background1">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Đang theo dõi"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tvDangTheoDoi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="99"
-                        android:gravity="center"/>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/background1"
-                android:elevation="5dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_below="@+id/imgAvatar2"
-                    android:layout_gravity="center"
-                    android:src="@drawable/anhdemo1" />
-
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/btnDangBai"
+                    android:id="@+id/tvTenNguoiDung"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#ffffff"
-                    android:gravity="top"
-                    android:hint="Bạn đang nghĩ gì?"
-                    android:padding="10dp"
-                    android:paddingTop="10dp" />
+                    android:layout_height="match_parent"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:text="Nguyễn Bá Thanh Nhàn"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+                    android:text="Xem trang cá nhân"/>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="BÀI VIẾT"
-                android:textColor="#000000"
-                android:textSize="20dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcvBaiViet"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/header"></androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </com.google.android.material.card.MaterialCardView>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/CornflowerBlue"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBaiVietYeuThich"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:textSize="16sp"
+        android:text="Bài viết yêu thích"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_love"
+        app:iconTint="@color/red"
+        android:textColor="@color/DodgerBlue"
+        android:padding="15dp"
+        app:iconPadding="15dp"
+        app:cornerRadius="12dp"
+        android:textAlignment="viewStart"
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMatHangToiRao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:text="Mặt hàng tôi rao"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_love"
+        android:padding="15dp"
+        app:iconPadding="15dp"
+        app:cornerRadius="12dp"
+        android:textSize="16sp"
+        android:textColor="@color/DodgerBlue"
+        android:textAlignment="viewStart"
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMatHangDaLuu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:text="Mặt hàng đã lưu"
+        android:textColor="@color/DodgerBlue"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_love"
+        android:padding="15dp"
+        app:iconPadding="15dp"
+        app:cornerRadius="12dp"
+        android:textSize="16sp"
+        android:textAlignment="viewStart"
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBaiVietDaAn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:text="Bài viết đã ẩn"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_love"
+        app:iconTint="@color/red"
+        android:textSize="16sp"
+        android:textColor="@color/DodgerBlue"
+        android:padding="15dp"
+        app:iconPadding="15dp"
+        app:cornerRadius="12dp"
+        android:textAlignment="viewStart"
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/CornflowerBlue"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnChinhSuaThongTin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:text="Chỉnh sửa thông tin"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_love"
+        app:iconTint="@color/red"
+        android:textColor="@color/DodgerBlue"
+        android:padding="15dp"
+        app:iconPadding="15dp"
+        app:cornerRadius="12dp"
+        android:textSize="16sp"
+        android:textAlignment="viewStart"
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDoiMatKhau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:text="Đổi mật khẩu"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_love"
+        app:iconTint="@color/red"
+        android:textSize="16sp"
+        android:textColor="@color/DodgerBlue"
+        android:padding="15dp"
+        app:iconPadding="15dp"
+        app:cornerRadius="12dp"
+        android:textAlignment="viewStart"
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/CornflowerBlue"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDangXuat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:text="Đăng xuất"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_love"
+        app:iconTint="@color/red"
+        android:textSize="16sp"
+        android:textColor="@color/DodgerBlue"
+        android:padding="15dp"
+        app:iconPadding="15dp"
+        app:cornerRadius="12dp"
+        android:textAlignment="viewStart"
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+
+</LinearLayout>

@@ -84,7 +84,7 @@ public interface ApiService {
     @POST("baiViet/xoa/{id}")
     Call<DuLieuTraVe> xoaBaiViet(@Path("id") String id);
 
-    @GET("baiViet/danhSachYeuThich/:{id}")
+    @GET("baiViet/danhSachYeuThich/{id}")
     Call<DuLieuTraVe> danhSachYeuThich(@Path("id") String idNguoiDung);
 
     @FormUrlEncoded

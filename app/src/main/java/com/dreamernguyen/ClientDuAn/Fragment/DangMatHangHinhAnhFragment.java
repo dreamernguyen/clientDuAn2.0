@@ -39,7 +39,6 @@ public class DangMatHangHinhAnhFragment extends Fragment {
 
         tvBack = view.findViewById(R.id.tvBack);
 
-        tv = view.findViewById(R.id.tv);
         tvThemAnh = view.findViewById(R.id.tvThemAnh);
         btnToiDiaChi = view.findViewById(R.id.btnToiDiaChi);
         rvHinhAnh = view.findViewById(R.id.rvHinhAnh);

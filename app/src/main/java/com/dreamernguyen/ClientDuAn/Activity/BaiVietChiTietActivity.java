@@ -1,19 +1,20 @@
 package com.dreamernguyen.ClientDuAn.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -26,12 +27,15 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.dreamernguyen.ClientDuAn.Adapter.AnhBaiVietAdapter;
 import com.dreamernguyen.ClientDuAn.Adapter.BinhLuanAdapter;
+import com.dreamernguyen.ClientDuAn.Adapter.NguoiDungAdapter;
 import com.dreamernguyen.ClientDuAn.ApiService;
 import com.dreamernguyen.ClientDuAn.LocalDataManager;
 import com.dreamernguyen.ClientDuAn.Models.BaiViet;
 import com.dreamernguyen.ClientDuAn.Models.BinhLuan;
 import com.dreamernguyen.ClientDuAn.Models.DuLieuTraVe;
+import com.dreamernguyen.ClientDuAn.Models.NguoiDung;
 import com.dreamernguyen.ClientDuAn.R;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
@@ -61,7 +65,7 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
     String idBaiViet;
     RecyclerView rvBinhLuan;
     ImageView imTuyChinh;
-    MaterialButton btnGui;
+    MaterialButton btnGui,btnLuotThich;
     TextView tvTim,tvTrangThai,tvThoiGian;
     LikeButton btnLike;
     EditText edBinhLuan;
@@ -72,7 +76,8 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bai_viet_chi_tiet);
-
+        Window window = getWindow();
+        window.setStatusBarColor(Color.BLUE);
         tvNoiDung = findViewById(R.id.tvNoiDung);
         tvTenNguoiDung = findViewById(R.id.tvTenNguoiDung);
         tvTrangThai = findViewById(R.id.tvTrangThai);
@@ -80,6 +85,7 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
         vpgAnh = findViewById(R.id.vpgImage);
         tvTim = findViewById(R.id.tvTim);
         btnLike = findViewById(R.id.btnLike);
+        btnLuotThich = findViewById(R.id.btnLuotThich);
         imgAvatar = findViewById(R.id.imgAvatar);
         imTuyChinh = findViewById(R.id.imTuyChinh);
         layoutLoading = findViewById(R.id.layoutLoading);
@@ -144,6 +150,7 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
 
             }
         });
+
 
 
 
@@ -218,6 +225,7 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.dialog_bao_cao_bai_viet);
 
+
                         Window window = dialog.getWindow();
                         if(window == null){
                             return;
@@ -227,6 +235,8 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
                         windowAttributes.gravity = Gravity.CENTER;
                         window.setAttributes(windowAttributes);
                         dialog.setCancelable(false);
+
+
 
 
                         MaterialButton btnYes = dialog.findViewById(R.id.btnYes);
@@ -400,6 +410,23 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
                         });
                     }
 
+                });
+                BottomSheetDialog bottomSheetDialog2 = new BottomSheetDialog(BaiVietChiTietActivity.this,R.style.BottomSheetThemeCustom);
+                View viewDialog2 =   getLayoutInflater().inflate(R.layout.dialog_luot_thich, new LinearLayout(BaiVietChiTietActivity.this));
+                bottomSheetDialog2.setContentView(viewDialog2);
+
+                RecyclerView rvLuotThich = viewDialog2.findViewById(R.id.rvLuotThich);
+                rvLuotThich.setLayoutManager(new LinearLayoutManager(BaiVietChiTietActivity.this,RecyclerView.VERTICAL,false));
+                NguoiDungAdapter nguoiDungAdapter = new NguoiDungAdapter(BaiVietChiTietActivity.this);
+                rvLuotThich.setAdapter(nguoiDungAdapter);
+                RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getApplicationContext(),DividerItemDecoration.VERTICAL);
+                rvLuotThich.addItemDecoration(itemDecoration);
+                nguoiDungAdapter.setData(baiViet.getLuotThich());
+                btnLuotThich.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        bottomSheetDialog2.show();
+                    }
                 });
             }
 

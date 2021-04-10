@@ -33,7 +33,6 @@ public class AnhChiTietActivity extends AppCompatActivity {
         vp = findViewById(R.id.vpgImage);
         Intent i = getIntent();
         anhBaiVietAdapter = new AnhBaiVietAdapter(i.getStringArrayListExtra("listAnh"),true);
-        Log.d("pppp", "onCreate: "+i.getIntExtra("pos",0));
 
         vp.setAdapter(anhBaiVietAdapter);
         vp.setCurrentItem(i.getIntExtra("pos",0));

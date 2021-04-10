@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -155,8 +157,11 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
     }
 
     public void DangNhap() {
+        InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        manager.hideSoftInputFromWindow(edSDT.getApplicationWindowToken(), 0);
+        manager.hideSoftInputFromWindow(edMatKhau.getApplicationWindowToken(), 0);
         validateForm();
-        if (layoutSDT.getError() == null || layoutMatKhau.getError() == null) {
+        if (layoutSDT.getError() == null && layoutMatKhau.getError() == null) {
             String mMatKhau = edMatKhau.getText().toString();
             String mSdt = edSDT.getText().toString();
             NguoiDung nguoiDung = new NguoiDung(mSdt, mMatKhau);
