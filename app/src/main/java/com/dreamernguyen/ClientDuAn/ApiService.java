@@ -59,6 +59,13 @@ public interface ApiService {
     @GET("nguoiDung/xemTrangCaNhan/{id}")
     Call<DuLieuTraVe> xemTrangCaNhan(@Path("id") String idNguoiDung);
 
+    @POST("nguoiDung/chinhSuaThongTin/{id}")
+    Call<DuLieuTraVe> chinhSuaThongTin(@Path("id") String idNguoiDung, @Body NguoiDung nguoiDung);
+
+    @FormUrlEncoded
+    @POST("nguoiDung/doiMatKhau/{id}")
+    Call<DuLieuTraVe> doiMatKhau(@Path("id") String idNguoiDung, @Field("matKhauCu") String matKhauCu,@Field("matKhauMoi") String matKhauMoi);
+
     //Bài viết
     @GET("baiViet/danhSach")
     Call<DuLieuTraVe> danhSachBaiViet();
@@ -149,6 +156,19 @@ public interface ApiService {
     @POST("matHang/chiTiet/{id}")
     Call<DuLieuTraVe> xemChiTietMatHang(@Path("id") String id);
 
+    @GET("matHang/danhSachQuanTam/{id}")
+    Call<DuLieuTraVe> danhSachQuanTam(@Path("id") String idNguoiDung);
+
+    @GET("matHang/danhSachToiBan/{id}")
+    Call<DuLieuTraVe> danhSachToiBan(@Path("id") String idNguoiDung);
+
+    @FormUrlEncoded
+    @POST("matHang/quanTam")
+    Call<DuLieuTraVe> quanTam(@Field("idMatHang") String idMatHang,@Field("idNguoiDung") String idNguoiDung);
+
+    @FormUrlEncoded
+    @POST("matHang/boQuanTam")
+    Call<DuLieuTraVe> boQquanTam(@Field("idMatHang") String idMatHang,@Field("idNguoiDung") String idNguoiDung);
     //Thông báo
     @GET("thongBao/danhSach/{id}")
     Call<List<ThongBao>> danhSachThongBao(@Path("id")String id);

@@ -67,9 +67,7 @@ public class NguoiDung {
         this.soDienThoai = soDienThoai;
     }
     //Cập nhật thông tin
-    public NguoiDung(String id, String matKhau, String hoTen, String ngaySinh, String diaChi, String tieuSu, Boolean gioiTinh) {
-        this.id = id;
-        this.matKhau = matKhau;
+    public NguoiDung(String hoTen, String ngaySinh, String diaChi, String tieuSu, Boolean gioiTinh) {
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;

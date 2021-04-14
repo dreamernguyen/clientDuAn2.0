@@ -46,7 +46,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TrangCaNhanActivity extends AppCompatActivity {
-    TextView tvTenNguoiDung, tvDangTheoDoi, tvNguoiTheoDoi, tvTrong;
+    TextView tvTenNguoiDung, tvDangTheoDoi, tvNguoiTheoDoi, tvTrong,tvTieuSu;
     RecyclerView rcvBaiViet;
     BaiVietAdapter baiVietAdapter;
     CircleImageView imgAvatar;
@@ -93,6 +93,7 @@ public class TrangCaNhanActivity extends AppCompatActivity {
         layoutBottom = findViewById(R.id.layoutBottom);
         btnChat = findViewById(R.id.btnChat);
         btnTheoDoi = findViewById(R.id.btnTheoDoi);
+        tvTieuSu = findViewById(R.id.tvTieuSu);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(TrangCaNhanActivity.this, RecyclerView.VERTICAL, false);
         rcvBaiViet.setLayoutManager(linearLayoutManager);
@@ -191,6 +192,7 @@ public class TrangCaNhanActivity extends AppCompatActivity {
 
                 }
                 tvTenNguoiDung.setText(nguoiDung.getHoTen());
+                tvTieuSu.setText(nguoiDung.getTieuSu());
                 tvDangTheoDoi.setText(nguoiDung.getDangTheoDoi().size() + "");
                 tvNguoiTheoDoi.setText(nguoiDung.getDuocTheoDoi().size() + "");
                 if (nguoiDung.getAvatar() != null && !nguoiDung.getAvatar().isEmpty()) {

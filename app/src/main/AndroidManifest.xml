@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YoKaFo"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.MatHangQuanTamActivity" />
+        <activity android:name=".Activity.MatHangToiRaoActivity" />
+        <activity android:name=".Activity.ChinhSuaThongTinActivity" />
 
         <service
             android:name=".MyService"
@@ -32,7 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.BaiVietYeuThichActivity"/>
+        <activity android:name=".Activity.BaiVietYeuThichActivity" />
         <activity android:name=".Activity.MatHangChiTietActivity" />
         <activity android:name=".Activity.TimKiemMatHangActivity" />
         <activity android:name=".Activity.TrangCaNhanActivity" />

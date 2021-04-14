@@ -26,6 +26,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -45,6 +47,9 @@ public class MatHangAdapter extends RecyclerView.Adapter<MatHangAdapter.MatHangV
     public void setData(List<MatHang> list) {
         this.listMatHang = list;
         notifyDataSetChanged();
+    }
+    public void random(){
+        Collections.shuffle(listMatHang);
     }
 
     @NonNull
@@ -93,11 +98,10 @@ public class MatHangAdapter extends RecyclerView.Adapter<MatHangAdapter.MatHangV
         }
 
         holder.tvTieuDe.setText(matHang.getTieuDe());
-        holder.tvGiaBan.setText(matHang.getGiaBan()+" VND");
+        holder.tvGiaBan.setText( matHang.getGiaBan()+" VND");
         String thanhPho=matHang.getDiaChi().replaceAll("(?=\\-)(.*?)$", "");
         holder.tvDiaChi.setText(thanhPho);
         Glide.with(context).load(matHang.getLinkAnh().get(0)).into(holder.imgHinhAnh);
-        holder.tvSoAnh.setText(matHang.getLinkAnh().size()+"");
         holder.lnChiTiet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,9 +133,7 @@ public class MatHangAdapter extends RecyclerView.Adapter<MatHangAdapter.MatHangV
             tvGiaBan = itemView.findViewById(R.id.tvGiaBan);
             tvDiaChi=itemView.findViewById(R.id.tvDiaChi);
             tvThoiGian=itemView.findViewById(R.id.tvThoiGian);
-            tvSoAnh=itemView.findViewById(R.id.tvSoAnh);
             imgHinhAnh=itemView.findViewById(R.id.imgHinhAnh);
-            imgTuyChinh=itemView.findViewById(R.id.imgTuyChinh);
             lnChiTiet=itemView.findViewById(R.id.lnChiTiet);
         }
     }

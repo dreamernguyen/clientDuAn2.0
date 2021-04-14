@@ -12,16 +12,20 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dreamernguyen.ClientDuAn.Adapter.AnhAdapter;
 import com.dreamernguyen.ClientDuAn.Adapter.AnhBaiVietAdapter;
 import com.dreamernguyen.ClientDuAn.ApiService;
+import com.dreamernguyen.ClientDuAn.LocalDataManager;
 import com.dreamernguyen.ClientDuAn.Models.DuLieuTraVe;
 import com.dreamernguyen.ClientDuAn.Models.MatHang;
 import com.dreamernguyen.ClientDuAn.R;
+import com.google.android.material.checkbox.MaterialCheckBox;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,6 +45,7 @@ public class MatHangChiTietActivity extends AppCompatActivity {
     TextView tvTieuDe, tvGiaBan, tvDiaChi, tvMota,tvSuaTin,tvXoaTin, tvThoiGianChiTiet, tvHoTen, tvSdt;
     String idMatHangChiTiet;
     Intent intent;
+    MaterialCheckBox chkLuuTin;
     CircleImageView imgAvatar;
 
     @Override
@@ -58,6 +63,7 @@ public class MatHangChiTietActivity extends AppCompatActivity {
         window.setStatusBarColor(Color.TRANSPARENT);
 
         vpgImage = findViewById(R.id.vpgImage);
+        chkLuuTin = findViewById(R.id.chkLuuTin);
         tvTieuDe = findViewById(R.id.tvTieuDeChiTiet);
         tvGiaBan = findViewById(R.id.tvGiaChiTiet);
         tvDiaChi = findViewById(R.id.tvDiaChiChiTiet);
@@ -144,6 +150,51 @@ public class MatHangChiTietActivity extends AppCompatActivity {
                 tvMota.setText(matHang.getMoTa());
                 tvHoTen.setText(matHang.getIdNguoiDung().getHoTen());
                 tvSdt.setText("Số điện thoại: "+khong+matHang.getIdNguoiDung().getSoDienThoai()+"");
+
+                if(matHang.getNguoiQuanTam().size() == 0){
+                    chkLuuTin.setChecked(false);
+                }else {
+                    for(int i = 0; i < matHang.getNguoiQuanTam().size();i++){
+                        if(matHang.getNguoiQuanTam().get(i).getId().equals(LocalDataManager.getIdNguoiDung())){
+                            chkLuuTin.setChecked(true);
+                        }
+                    }
+                }
+                chkLuuTin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(isChecked){
+                            Call<DuLieuTraVe> call = ApiService.apiService.quanTam(matHang.getId(),LocalDataManager.getIdNguoiDung());
+                            call.enqueue(new Callback<DuLieuTraVe>() {
+                                @Override
+                                public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                                    Toast.makeText(MatHangChiTietActivity.this, "Đã quan tâm", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                                    Log.d("QuanTamMatHang", "onFailure: "+t.getMessage());
+
+                                }
+                            });
+                        }else {
+                            Call<DuLieuTraVe> call = ApiService.apiService.boQquanTam(matHang.getId(),LocalDataManager.getIdNguoiDung());
+                            call.enqueue(new Callback<DuLieuTraVe>() {
+                                @Override
+                                public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                                    Toast.makeText(MatHangChiTietActivity.this, "Bỏ quan tâm", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                                    Log.d("BoQuanTamMatHang", "onFailure: "+t.getMessage());
+
+                                }
+                            });
+
+                        }
+                    }
+                });
                 Glide.with(getApplicationContext()).load(mLinkAnh).into(imgAvatar);
                 Log.d("linkAnhAvatar", "onResponse: "+ mLinkAnh);
             }
@@ -163,8 +214,8 @@ public class MatHangChiTietActivity extends AppCompatActivity {
             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
                 MatHang matHang = response.body().getMatHang();
                 tvTieuDe.setText(matHang.getTieuDe());
-                tvDiaChi.setText(matHang.getDiaChi());
-                tvGiaBan.setText(matHang.getGiaBan() + "");
+                tvDiaChi.setText("/"+matHang.getDiaChi());
+                tvGiaBan.setText("Giá: "+matHang.getGiaBan() + " Đồng");
                 tvMota.setText(matHang.getMoTa());
             }
 

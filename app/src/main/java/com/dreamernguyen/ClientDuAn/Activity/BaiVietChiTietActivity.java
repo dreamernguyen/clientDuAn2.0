@@ -110,46 +110,7 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
         }else {
             Toast.makeText(this, "Tạo bài mới", Toast.LENGTH_SHORT).show();
         }
-        btnLike.setOnLikeListener(new OnLikeListener() {
-            @Override
-            public void liked(LikeButton likeButton) {
-                Call<DuLieuTraVe> call = ApiService.apiService.thichBaiViet(idBaiViet,LocalDataManager.getIdNguoiDung());
-                call.enqueue(new Callback<DuLieuTraVe>() {
-                    @Override
-                    public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
-                        Log.d("Like", "onResponse: Đã like bài viết");
-                        int soTim = Integer.parseInt(tvTim.getText().toString() )+ 1;
-                        tvTim.setText(soTim+"");
-                    }
 
-                    @Override
-                    public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Lỗi like", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-
-            @Override
-            public void unLiked(LikeButton likeButton) {
-                Call<DuLieuTraVe> call = ApiService.apiService.boThichBaiViet(idBaiViet,LocalDataManager.getIdNguoiDung());
-                call.enqueue(new Callback<DuLieuTraVe>() {
-                    @Override
-                    public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
-                        Log.d("Like", "onResponse: Đã like bài viết");
-                        int soTim = Integer.parseInt(tvTim.getText().toString() ) - 1;
-                        tvTim.setText(soTim+" Yêu thích");
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Lỗi dislike", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-        });
 
 
 
@@ -214,6 +175,55 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
                 }else {
                     vpgAnh.setVisibility(View.GONE);
                 }
+                if(baiViet.getLuotThich().size() == 0){
+                    btnLike.setLiked(false);
+                }else {
+                    for(int i = 0; i < baiViet.getLuotThich().size();i++){
+                        if(baiViet.getLuotThich().get(i).getId().equals(LocalDataManager.getIdNguoiDung())){
+                            btnLike.setLiked(true);
+                        }
+                    }
+                }
+                btnLike.setOnLikeListener(new OnLikeListener() {
+                    @Override
+                    public void liked(LikeButton likeButton) {
+                        Call<DuLieuTraVe> call = ApiService.apiService.thichBaiViet(idBaiViet,LocalDataManager.getIdNguoiDung());
+                        call.enqueue(new Callback<DuLieuTraVe>() {
+                            @Override
+                            public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                                Log.d("Like", "onResponse: Đã like bài viết");
+                                int soTim = Integer.parseInt(tvTim.getText().toString() )+ 1;
+                                tvTim.setText(soTim+"");
+                            }
+
+                            @Override
+                            public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), "Lỗi like", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void unLiked(LikeButton likeButton) {
+                        Call<DuLieuTraVe> call = ApiService.apiService.boThichBaiViet(idBaiViet,LocalDataManager.getIdNguoiDung());
+                        call.enqueue(new Callback<DuLieuTraVe>() {
+                            @Override
+                            public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                                Log.d("Like", "onResponse: Đã like bài viết");
+                                int soTim = Integer.parseInt(tvTim.getText().toString() ) - 1;
+                                tvTim.setText(soTim+" Yêu thích");
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), "Lỗi dislike", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                });
                 imTuyChinh.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

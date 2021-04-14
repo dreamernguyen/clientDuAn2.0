@@ -33,12 +33,18 @@ public class MatHang {
     @SerializedName("daAn")
     @Expose
     private Boolean daAn;
+    @SerializedName("daDuyet")
+    @Expose
+    private Boolean daDuyet;
     @SerializedName("daXoa")
     @Expose
     private Boolean daXoa;
     @SerializedName("baoCao")
     @Expose
     private int baoCao;
+    @SerializedName("nguoiQuanTam")
+    @Expose
+    private List<NguoiDung> nguoiQuanTam = null;
     @SerializedName("thoiGianTao")
     @Expose
     private String thoiGianTao;
@@ -142,6 +148,26 @@ public class MatHang {
 
     public void setBaoCao(int baoCao) {
         this.baoCao = baoCao;
+    }
+
+    public void setMoTa(String moTa) {
+        this.moTa = moTa;
+    }
+
+    public Boolean getDaDuyet() {
+        return daDuyet;
+    }
+
+    public void setDaDuyet(Boolean daDuyet) {
+        this.daDuyet = daDuyet;
+    }
+
+    public List<NguoiDung> getNguoiQuanTam() {
+        return nguoiQuanTam;
+    }
+
+    public void setNguoiQuanTam(List<NguoiDung> nguoiQuanTam) {
+        this.nguoiQuanTam = nguoiQuanTam;
     }
 
     public String getThoiGianTao() {

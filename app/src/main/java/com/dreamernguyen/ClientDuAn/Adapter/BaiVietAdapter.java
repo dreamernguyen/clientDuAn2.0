@@ -162,8 +162,7 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context,R.style.BottomSheetThemeCustom);
                 bottomSheetDialog.setContentView(viewDailog);
                 bottomSheetDialog.show();
-                Dialog dialog = new Dialog(context);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                Dialog dialog = new Dialog(context,R.style.BottomSheetThemeCustom);
                 dialog.setContentView(R.layout.dialog_bao_cao_bai_viet);
 
                 Window window = dialog.getWindow();
@@ -329,6 +328,7 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                 btnAnKhoiToi.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        bottomSheetDialog.dismiss();
                         Call<DuLieuTraVe> call = ApiService.apiService.anBaiVietKhoiToi(baiViet.getId(),baiViet.getIdNguoiDung().getId());
                         call.enqueue(new Callback<DuLieuTraVe>() {
                             @Override
@@ -348,6 +348,7 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
                 btnBaoCao.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        bottomSheetDialog.dismiss();
                         dialog.show();
                     }
                 });
